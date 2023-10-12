@@ -1,4 +1,4 @@
-{{- if .Values.crd.volumeSnapshot }}
+{{- if and .Values.crd.enabled .Values.crd.volumeSnapshot }}
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
