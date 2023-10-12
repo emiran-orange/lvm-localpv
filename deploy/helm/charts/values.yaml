@@ -81,6 +81,7 @@ lvmController:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.8.0
   snapshotter:
+    enabled: true
     name: "csi-snapshotter"
     image:
       # Make sure that registry name end with a '/'.
@@ -91,6 +92,7 @@ lvmController:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v6.2.2
   snapshotController:
+    enabled: true
     name: "snapshot-controller"
     image:
       # Make sure that registry name end with a '/'.

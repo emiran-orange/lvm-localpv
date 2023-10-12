@@ -56,6 +56,7 @@ spec:
               mountPath: /var/lib/csi/sockets/pluginproxy/
           resources:
             {{- toYaml .Values.lvmController.resources | nindent 12 }}
+{{- if .Values.lvmController.snapshotter.enabled }}
         - name: {{ .Values.lvmController.snapshotter.name }}
           image: "{{ .Values.lvmController.snapshotter.image.registry }}{{ .Values.lvmController.snapshotter.image.repository }}:{{ .Values.lvmController.snapshotter.image.tag }}"
           imagePullPolicy: {{ .Values.lvmController.snapshotter.image.pullPolicy }}
@@ -72,6 +73,8 @@ spec:
               mountPath: /var/lib/csi/sockets/pluginproxy/
           resources:
             {{- toYaml .Values.lvmController.resources | nindent 12 }}
+{{- end }}
+{{- if .Values.lvmController.snapshotController.enabled }}
         - name: {{ .Values.lvmController.snapshotController.name }}
           image: "{{ .Values.lvmController.snapshotController.image.registry }}{{ .Values.lvmController.snapshotController.image.repository }}:{{ .Values.lvmController.snapshotController.image.tag }}"
           args:
@@ -82,6 +85,7 @@ spec:
           imagePullPolicy: {{ .Values.lvmController.snapshotController.image.pullPolicy }}
           resources:
             {{- toYaml .Values.lvmController.resources | nindent 12 }}
+{{- end }}
         - name: {{ .Values.lvmController.provisioner.name }}
           image: "{{ .Values.lvmController.provisioner.image.registry }}{{ .Values.lvmController.provisioner.image.repository }}:{{ .Values.lvmController.provisioner.image.tag }}"
           imagePullPolicy: {{ .Values.lvmController.provisioner.image.pullPolicy }}
